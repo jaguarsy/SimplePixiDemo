@@ -1,0 +1,26 @@
+{
+  "name": "simple-pixi-demo",
+  "version": "0.0.1",
+  "description": "a simple game.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp webserver",
+    "build": "gulp build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JohnnyCage",
+  "license": "ISC",
+  "dependencies": {
+    "javascript-astar": "^0.4.1",
+    "pixi.js": "^4.2.3"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-rollup": "^3.0.0",
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0",
+    "rollup": "^0.37.0",
+    "rollup-plugin-babel": "^2.7.1",
+    "rollup-plugin-json": "^2.1.0",
+    "rollup-plugin-node-resolve": "^2.0.0"
+  }
+}
