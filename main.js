@@ -1066,11 +1066,12 @@ var DragRect = function (_Base) {
 
       var start = vector.minus(startPosition, cameraPosition);
       var end = vector.minus(currentPosition, cameraPosition);
+
       var rect = {
-        x: start.x,
-        y: start.y,
-        width: end.x - start.x,
-        height: end.y - start.y
+        x: Math.min(start.x, end.x),
+        y: Math.min(start.y, end.y),
+        width: Math.abs(end.x - start.x),
+        height: Math.abs(end.y - start.y)
       };
 
       if (!rect.width || !rect.height) {
