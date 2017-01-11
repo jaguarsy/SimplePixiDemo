@@ -38,12 +38,31 @@ camera.position = {
   y: limitY / 2,
 };
 
+const fps = new PIXI.Text('', config.fontStyle);
+fps.position = {
+  x: 10,
+  y: 10,
+};
+
 stage.addChild(camera);
+stage.addChild(fps);
 
 const dragRect = new DragRect(config.selectRectColor);
 dragRect.bindToContainer(stage);
 
+let lastTime = Date.now();
+let fpsIndex = 0;
 const animate = () => {
+  if (lastTime) {
+    let now = Date.now();
+    fpsIndex++;
+    if (now - lastTime > 1000) {
+      fps.setText(`${Math.round(1000 * fpsIndex / (now - lastTime))} fps`);
+      fpsIndex = 0;
+      lastTime = now;
+    }
+  }
+
   if (camera.position.x + cameraMoveSpeedX <= 0 &&
     camera.position.x + cameraMoveSpeedX >= limitX) {
     camera.position.x += cameraMoveSpeedX;

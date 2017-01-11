@@ -8,7 +8,7 @@ const DEFAULT_PORT = 8080;
 
 gulp.task('script', function () {
   return rollup({
-    entry: 'src/index.js',
+    entry: 'src/js/index.js',
     format: 'cjs',
     plugins: [
       json(),
@@ -17,7 +17,7 @@ gulp.task('script', function () {
   }).then(function (bundle) {
     return bundle.write({
       format: 'iife',
-      dest: 'dist/main.js'
+      dest: 'main.js'
     });
   });
 });
@@ -28,17 +28,17 @@ gulp.task('copy-js', function () {
   return gulp.src([
     'node_modules/pixi.js/dist/pixi.min.js',
     'node_modules/javascript-astar/astar.js'
-  ]).pipe(gulp.dest('dist'));
+  ]).pipe(gulp.dest('lib'));
 });
 
 gulp.task('copy-html', function () {
-  return gulp.src(['index.html'])
-    .pipe(gulp.dest('dist'));
+  return gulp.src(['src/index.html'])
+    .pipe(gulp.dest('.'));
 });
 
 gulp.task('copy-resources', function () {
   return gulp.src(['resources/**/*.*'])
-    .pipe(gulp.dest('dist/resources'));
+    .pipe(gulp.dest('resources'));
 });
 
 gulp.task('watch', function () {
@@ -47,7 +47,7 @@ gulp.task('watch', function () {
 
 gulp.task('webserver', ['script', 'copy', 'watch'], function () {
   connect.server({
-    root: 'dist',
+    root: '.',
     port: DEFAULT_PORT,
     livereload: false
   });
